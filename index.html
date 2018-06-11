@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Diversity in GitHub: A Data Visualization Study</title>
+    <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+</head>
+<body>
+    <script>
+        d3.dsv(';', 'sample.csv', function(d) {
+            return {
+                window_idx: d.window_idx,
+                total_commiters: d.total_committers
+            }
+        }).then(function(results){
+
+        });
+    </script>
+    <div class="chart"></div>
+</body>
+</html>
