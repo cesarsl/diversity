@@ -4,20 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="c3.min.css">
     <title>Diversity in GitHub: A Data Visualization Study</title>
     <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+    <script src="c3.min.js"></script>
+    <script src="crossfilter.min.js"></script>
 </head>
 <body>
     <script>
         d3.dsv(';', 'sample.csv', function(d) {
             return {
+                name: d.name,
                 window_idx: d.window_idx,
-                total_commiters: d.total_committers
+                num_team: d.num_team,
+                blau_gender: d.blau_gender,
             }
-        }).then(function(results){
-
+        }).then(function(results) {
+            console.log(results);
+            var ndx = crossfilter(results);
+            var all = ndx.groupAll();
+            var idxDimension = ndx.dimension(function(d) {
+                return d.window_idx;
+            })
+            console.log(idxDimension.group().all());
+            var chart = c3.generate({
+                bindto: '#chart',
+                data: {
+                    json: results
+                }
+            })
         });
     </script>
-    <div class="chart"></div>
+    <div id="chart"></div>
 </body>
 </html>
