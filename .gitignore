@@ -1,2 +1,5 @@
 .gitignore
 _diversity_data.csv
+.DS_Store
+.ipynb_checkpoints/
+.vscode/
